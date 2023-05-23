@@ -9,16 +9,16 @@ public  class Board  extends JPanel implements ActionListener{
         static final int SCREEN_WIDTH = 600;
         static final int SCREEN_HEIGHT = 600;
 
-        static final int UNIT_SIZE = 25;//object size
-        static final int GAME_UNIT = (SCREEN_WIDTH*SCREEN_HEIGHT) /UNIT_SIZE;//object number
+        static final int UNIT_SIZE = 25;
+        static final int GAME_UNIT = (SCREEN_WIDTH*SCREEN_HEIGHT) /UNIT_SIZE;
         static final int DELAY = 75;
 
         final int X[] = new int[GAME_UNIT];
-        final int Y[] = new int[GAME_UNIT];//snake never higher than size
-        int bodyParts= 6;//6 body part of snake
+        final int Y[] = new int[GAME_UNIT];
+        int bodyParts= 6;
         int appleEaten;
 
-        int apple_X;// x cordinate of apple
+        int apple_X;
         int apple_Y;
 
         char direction ='R';
@@ -57,14 +57,7 @@ public  class Board  extends JPanel implements ActionListener{
         public void draw(Graphics g){
             
             if (running) {
-                   /*      
-                for (int i = 0; i <SCREEN_HEIGHT/UNIT_SIZE; i++) {
-
-                    g.drawLine(i*UNIT_SIZE, 0,i*UNIT_SIZE, SCREEN_HEIGHT);
-                    g.drawLine(0,i*UNIT_SIZE,SCREEN_WIDTH, i*UNIT_SIZE);
-
-                }
-                */
+               
                 g.setColor(Color.red);
                 g.fillOval(apple_X, apple_Y, UNIT_SIZE, UNIT_SIZE);
 
@@ -79,7 +72,7 @@ public  class Board  extends JPanel implements ActionListener{
                     else{
 
                         g.setColor(new Color(0, 0, 255));
-                        //g.setColor(new Color(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
+                        
                         g.fillRect(X[i], Y[i], UNIT_SIZE, UNIT_SIZE);
                     }
                 }
@@ -150,7 +143,7 @@ public  class Board  extends JPanel implements ActionListener{
 
         public void check_collisions(){
             
-            //check if head collides with body
+            
             for (int i = bodyParts; i >0; i--) {
                 
                     if ((X[0] == X[i]) && (Y[0] == Y[i])) {
@@ -161,32 +154,32 @@ public  class Board  extends JPanel implements ActionListener{
                 
             }
             
-            //check if head touches left border
+            
             if (X[0] < 0) {
                 
                 running = false;
                 
             }
             
-            // check if head touches right border 
+            
              if (X[0] > SCREEN_WIDTH) {
                 
                 running = false;
                 
             }
-             //check to see if head touches right border 
+           
               if (Y[0] < 0) {
                 
                 running = false;
                 
             }
-            //check if head touches bottum border
+            
              if (Y[0] > SCREEN_HEIGHT) {
                 
                 running = false;
                 
             }
-            if(!running){//if running is false 
+            if(!running){
                 
                 timer.stop();
                 
@@ -196,13 +189,13 @@ public  class Board  extends JPanel implements ActionListener{
 
         public void gameOver(Graphics g){
             
-            //score
+          
             g.setColor(Color.red);
             g.setFont(new Font(" SansSerif",Font.BOLD,75));
             FontMetrics score = getFontMetrics(g.getFont());
             g.drawString("Game Over", (SCREEN_WIDTH-score.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
             
-            //gameover test
+            
             g.setColor(Color.red);
             g.setFont(new Font(" SansSerif",Font.BOLD,75));
             FontMetrics metrics = getFontMetrics(g.getFont());
